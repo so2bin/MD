@@ -5,23 +5,21 @@ let container = $('body');
 let hs        = DOC.querySelectorAll('h1,h2,h3,h4');
 let NAV       = DOC.createElement('div');
 
-// 保存当前的ul与li
+// 保存当前的ul与li, ul指向当前外层，li指向当前ul的内层
 let cur_ul = addSubUl(NAV);
 let cur_li = null;
-let lvl     = 1;
+let lvl     = 1;     // 当前li的等级
 
 hs.forEach(function (h, i) {
     let l = h.localName.substring(1);
     h.setAttribute('id', i);
     if (l > lvl) {
-        while(lvl<l){
-            // 先在当前ul增加一个子li,再在li里增加一个子ul
-            cur_li = addLi(cur_ul);
+        while(l > lvl){
+            // 先当前在li里增加一个子ul,再在ul增加一个子li
             cur_ul = addSubUl(cur_li);
+            cur_li = addLi(cur_ul);
             ++lvl;
         }
-        // 当前ul里增加一个li,再li里增加a
-        cur_li = addLi(cur_ul);
         addA(cur_li, i, h.innerText);
     } else if (l == lvl) {
         cur_li = addLi(cur_ul);
@@ -43,15 +41,16 @@ NAV.setAttribute('class', 'nav');
 container.prepend(NAV);
 
 // 项目列表下拉与隐藏
-let pro = $('.nav>ul>li:nth-child(odd)');
+let pro = $('.nav>ul>li>a');
 let dwn = DOC.createElement('span');
-dwn.innerHTML = '\u25BC';
-$('dwn').addClass('dwn-show dwn');
-pro.append(dwn);
+dwn.innerHTML = '&nbsp;\u25BC';
+// $('dwn').addClass('dwn-show dwn');
+dwn.setAttribute('class', 'dwn-show dwn');
+pro.after(dwn);
 // 监听事件
 $('.nav>ul').on('click','.dwn', function(e){
     $(e.target).toggleClass('dwn-show');
-    $(e.target).parent('li').next().toggle();
+    $(e.target).next('ul').toggle();
 })
 
 // 返回ul
