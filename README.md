@@ -7,8 +7,8 @@
 4. 为了方便开发,这里引入了OmniMarkupPreviewer>public里面的jQuery.min.js, 我这的版本是2.1.3
 
 ```html
+	<script type='text/javascript' src='/public/jquery-2.1.3.min.js'></script>
 	<link rel='stylesheet' type='text/css' href='/public/MD/md.css'>
 	<script type='text/javascript' src='/public/MD/md.js'></script>
-	<script type='text/javascript' src='/public/jquery-2.1.3.min.js'></script>
 ```
 5. OK;
