@@ -99,9 +99,26 @@ code{
 .codehilite .err {
     color: #70aa48;
     background-color: rgba(227, 210, 210, 0);
+    font-size: 12px;
+    font-style: italic;
 }
 
 /* boolean **/
 .codehilite .kc {
     color: #11b1be !important; 
+}
+
+/* js : */
+.codehilite .o{
+    color: #C4C4C4 !important;
+}
+
+.codehilite .c1 {
+    color: #70aa48 !important;
+    font-size: 12px;
+}
+
+.codehilite .k {
+    color: #0fb0ae !important;
+    font-weight: bold;
 }
